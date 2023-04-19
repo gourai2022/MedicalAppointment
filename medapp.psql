@@ -75,3 +75,36 @@ ALTER TABLE appointment ADD COLUMN patient_id INTEGER NOT NULL;
 ALTER TABLE appointment ADD CONSTRAINT appointment_doctor_id_fkey FOREIGN KEY (doctor_id) REFERENCES doctor (id);
 
 ALTER TABLE appointment ADD CONSTRAINT appointment_patient_id_fkey FOREIGN KEY (patient_id) REFERENCES patient (id);
+
+-- Doctor Records --
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. John Smith', 'Male', '123 Main St', 'New York', 'New York', '555-1234', 'https://facebook.com/drjohnsmith', 'https://twitter.com/drjohnsmith', 'https://linkedin.com/in/drjohnsmith', 'https://drjohnsmith.com', 'Cardiology', 0, 100);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. Jane Doe', 'Female', '456 Oak St', 'Los Angeles', 'California', '555-5678', 'https://facebook.com/drjanedoe', 'https://twitter.com/drjanedoe', 'https://linkedin.com/in/drjanedoe', 'https://drjanedoe.com', 'Dermatology', 0, 50);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. David Lee', 'Male', '789 Maple St', 'Chicago', 'Illinois', '555-9012', 'https://facebook.com/drdavidlee', 'https://twitter.com/drdavidlee', 'https://linkedin.com/in/drdavidlee', 'https://drdavidlee.com', 'Orthopedics', 0, 200);
+
+-- Patient Records -- 
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('John Doe', 'Male', '123 Main St', 'New York', 'New York', '555-1234', '1980-01-01', 'BlueCross', '123456', 'Cardiology', 'I have been experiencing chest pain', 0, 5);
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('Jane Smith', 'Female', '456 Oak St', 'Los Angeles', 'California', '555-5678', '1975-05-10', 'Aetna', '789012', 'Dermatology', 'I have a rash on my arms and legs', 0, 3);
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('David Lee', 'Male', '789 Maple St', 'Chicago', 'Illinois', '555-9012', '1990-08-15', 'Cigna', '345678', 'Orthopedics', 'I injured my knee playing soccer', 0, 2);
+
+-- Appointment Records -- 
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-15', '10:00 AM', true, 1, 1);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-15', '11:00 AM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-16', '1:00 PM', true, 2, 1);
