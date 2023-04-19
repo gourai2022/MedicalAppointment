@@ -1,0 +1,53 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+    <h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Patient Details</h3>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<h1 class="monospace">
+			{{ patient.name }}
+		</h1>
+		<p class="subtitle">
+			ID: {{ patient.id }}
+		</p>
+		<p>
+			<label>Gender:</label>{{ patient.gender }}
+		</p>
+		<p>
+			<label>City & State:</label> {{ patient.city }}, {{ patient.state }}
+		</p>
+		<p>
+			<label>Address:</label>{% if patient.address %}{{ patient.address }}{% else %}No Address{% endif %}
+		</p>
+		<p>
+			<label>Phone:</label>{% if patient.phone %}{{ patient.phone }}{% else %}No Phone{% endif %}
+		</p>
+		<p>
+			<label>Birth Date:</label>{% if patient.date_of_birth %}{{ patient.date_of_birth }}{% else %}No Date of Birth{% endif %}
+		</p>
+		<p>
+			<label>Health Insurance Provider:</label>{% if patient.health_insurance_provider %}{{ patient.health_insurance_provider }}{% else %}No Health Insurance Provider{% endif %}
+		</p>
+		<p>
+			<label>Health Insurance Id:</label>{% if patient.health_insurance_id %}{{ patient.health_insurance_id }}{% else %}No Health Insurance Id{% endif %}
+		</p>
+		<p>
+			<label>Seeking Specialities:</label>{{ patient.seeking_specialities }}
+		</p>
+		<p>
+			<label>Concern Description:</label>{% if patient.concern_description %}{{ patient.concern_description }}{% else %}No Concern Description{% endif %}
+		</p>
+		<div>
+			<a href="/patients/{{ patient.id }}/edit"><button class="btn btn-color btn-lg">Edit</button></a>
+			<!--<a href="/patients/delete/{{ patient.id }}"><button class="btn btn-color btn-lg">Delete</button></a>-->
+			<a href="{{ url_for('delete_patient', id = patient.id)}}" class="btn btn-color btn-lg">Delete</a>
+		</div>
+	</div>
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/patient.png') }}" alt="Front Photo" />
+	</div>
+</div>
+
+{% endblock %}
+

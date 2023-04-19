@@ -1,0 +1,20 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+	<h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Appointments List</h3>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<ul class="items">
+		{% for appointment in appointments %}
+		<li><p class="lead"></p><a href="/appointments/{{ appointment.id }}"><i class="fas fa-notes-medical"></i>
+			<label>Appointment Date</label>{{ appointment.appo_day }} <i class="fas fa-timer"></i><label>Time</label> {{ appointment.appo_time }}<p></a>
+		</li>
+		{% endfor %}
+		</ul>
+	</div>
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/appointment.png') }}" alt="Front Photo" />
+	</div>
+</div>
+{% endblock %}

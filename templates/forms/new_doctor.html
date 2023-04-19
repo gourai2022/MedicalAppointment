@@ -1,0 +1,71 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+    <h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Create New Doctor</h3>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+  <div class="form-wrapper">
+    <form method="post" class="form" action="/doctors/create">
+      <div class="form-group">
+        <label for="name">Name</label>
+        {{ form.name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="gender">Name</label>
+        {{ form.gender(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label>City & State</label>
+          <div class="form-inline">
+            <div class="form-group">
+              {{ form.city(class_ = 'form-control', placeholder='City', autofocus = true) }}
+            </div>
+            <div class="form-group">
+              {{ form.state(class_ = 'form-control', placeholder='State', autofocus = true) }}
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        {{ form.address(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label for="phone">Phone</label>
+          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+        </div>
+      
+      <div class="form-group">
+          <label for="facebook_link">Facebook Link</label>
+          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+       </div>
+      
+       <div class="form-group">
+          <label for="twiter_link">Twiter Link</label>
+          {{ form.twiter_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+       </div>
+
+       <div class="form-group">
+        <label for="linkedin_link">Linkedin Link</label>
+        {{ form.linkedin_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+        </div>
+       <div class="form-group">
+            <label for="website_link">Website Link</label>
+            {{ form.website_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+       </div>
+
+       <div class="form-group">
+            <label for="specialities">Specialities</label>
+            {{ form.specialities(class_ = 'form-control', placeholder='Description', autofocus = true) }}
+       </div>
+      <input type="submit" value="Create doctor" class="btn btn-color btn-lg btn-block">
+      {{ form.csrf_token() }}
+    </form>
+    </div>
+  </div>
+  <div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/doctor.png') }}" alt="Front Photo of Musical Band" />
+	</div>
+  </div>
+</div>  
+{% endblock %}

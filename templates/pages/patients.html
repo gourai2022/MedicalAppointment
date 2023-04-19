@@ -1,0 +1,26 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+<h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Patients List</h3>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+	<ul class="items">
+		{% for patient in patients %}
+		<li>
+			<a href="/patients/{{ patient.id }}">
+			<i class="fas fa-users"></i>
+			<div class="item">
+				<h5>ID : {{ patient.id }} &nbsp; Name : {{ patient.name }}</h5> 
+			</div>
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+	</div>
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/patient.png') }}" alt="Front Photo" />
+	</div>
+</div>
+
+{% endblock %}

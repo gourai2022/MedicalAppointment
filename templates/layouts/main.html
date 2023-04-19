@@ -1,0 +1,112 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+
+<!-- meta -->
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- /meta -->
+
+<!-- styles -->
+<link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">
+<!--<link type="text/css" rel="stylesheet" href="/static/css/layout.main.css" />-->
+<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+<!--<link type="text/css" rel="stylesheet" href="/static/css/styles.css" />-->
+<link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
+<!-- /styles -->
+
+<!-- favicons -->
+<link rel="shortcut icon" href="/static/ico/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="/static/ico/favicon.png">
+<!-- /favicons -->
+
+<!-- scripts -->
+<script src="https://kit.fontawesome.com/af77674fe5.js"></script>
+<script src="/static/js/libs/modernizr-2.8.2.min.js"></script>
+<script src="/static/js/libs/moment.min.js"></script>
+<!--<script type="text/javascript" src="/static/js/script.js"></script>
+[if lt IE 9]><script src="/static/js/libs/respond-1.4.2.min.js"></script><![endif]-->
+<!-- /scripts -->
+</head>
+<body>
+<div id="wrap"> 
+   <!-- ======= Top Bar ======= --> 
+  <div id="topbar" class="fixed-top">
+    <div class="container">
+      <div class="float-left">
+        <p><i class="fa fa-clock"></i> Monday - Saturday, 8 AM to 6 PM &nbsp;| &nbsp;<i class="fa fa-phone"></i> Call us now +1 111 111 1111</p>
+      </div>
+      <div class="righttopContent float-right">
+        <a href="/appointments" class="appointment-btn">Appointments</a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="BrandText" class="navbar-brand" href="/">MedApp</a>
+      </div>  
+      <div class="collapse navbar-collapse">
+        
+        <ul class="nav navbar-nav">
+          <li {% if request.endpoint == 'doctors' %} class="active" {% endif %}><a href="{{ url_for('doctors') }}">Doctors</a></li>
+          <li {% if request.endpoint == 'patients' %} class="active" {% endif %}><a href="{{ url_for('patients') }}">Patients</a></li>
+          <li {% if request.endpoint == 'appointments' %} class="active" {% endif %}><a href="{{ url_for('appointments') }}">Appointments</a></li>
+        </ul>
+        
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>    
+   
+<div class="header">
+  <div class="header-text">
+    <h1 class="header-title mb-3">MedApp</h1><p style="padding: 2px;"></p>
+    <h4 class="mb-3">Appointment Scheduling System</h4><p style="padding: 5px;"></p>
+    <a href="/appointments/create" class="header-button">Book an Appointment</a>
+  </div>
+</div>
+
+<section id="hero">
+<main id="content" role="main" class="container">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-block alert-info fade in">
+          <a class="close" data-dismiss="alert">&times;</a>
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+</section>
+  
+<footer id="footer">
+  <div class="container">
+    <p><span>MedApp</span> &copy; All Rights Reserved. For more info, call us +1 111 111 1111.</p>
+    {% block footer %}{% endblock %}
+  </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"></script>
+<!--<script>window.jQuery || document.write('<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"><\/script>')</script>-->
+<script type="text/javascript" src="/static/js/libs/bootstrap-3.1.1.min.js" defer></script>
+<script type="text/javascript" src="/static/js/plugins.js" defer></script>
+<script type="text/javascript" src="/static/js/script.js" defer></script>
+
+</body>
+</html>

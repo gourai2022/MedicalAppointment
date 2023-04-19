@@ -1,0 +1,53 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+    <h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Doctor Details</h3>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<h3 class="monospace">
+			{{ doctor.name }}
+		</h3>
+		<p class="subtitle">
+			ID: {{ doctor.id }}
+		</p>
+		<div class="specialities">
+			<h4>{{ doctor.specialities}}</h4>
+		</div>
+		<p>
+			<label>Gender:</label>{{ doctor.gender }}
+		</p>
+		<p>
+			<label>City & State:</label>{{ doctor.city }}, {{ doctor.state }}
+		</p>
+		
+		<p>
+			<label>Address:</label>{% if doctor.address %}{{ doctor.address }}{% else %}No Address{% endif %}
+		</p>
+		<p>
+			<label>Phone:</label>{% if doctor.phone %}{{ doctor.phone }}{% else %}No Phone{% endif %}
+		</p>
+		<p>
+			<label>Website Link:</label>{% if doctor.website_link %}<a href="{{ doctor.website_link }}" target="_blank">{{ doctor.website_link }}</a>{% else %}No Website{% endif %}
+		</p>
+		<p>
+			<label>Facebook:</label>{% if doctor.facebook_link %}<a href="{{ doctor.facebook_link }}" target="_blank">{{ doctor.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+		</p>
+		<p>
+			<label>Twiter:</label>{% if doctor.twiter_link %}<a href="{{ doctor.twiter_link }}" target="_blank">{{ doctor.twiter_link }}</a>{% else %}No Twiter Link{% endif %}
+		</p>
+		<p>
+			<label>Linkedin:</label>{% if doctor.linkedin_link %}<a href="{{ doctor.linkedin_link }}" target="_blank">{{ doctor.linkedin_link }}</a>{% else %}No Linkedin Link{% endif %}
+		</p>
+		<div>
+			<a href="/doctors/{{ doctor.id }}/edit"><button class="btn btn-color btn-lg">Edit</button></a>
+			<a href="{{ url_for('delete_doctor', id = doctor.id)}}" class="btn btn-color btn-lg">Delete</a>
+		</div>
+	</div>
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/doctor.png') }}" alt="Front Photo of Musical Band" />
+	</div>
+	</div>
+</div>
+{% endblock %}
+

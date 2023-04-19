@@ -1,0 +1,28 @@
+{% extends 'layouts/main.html' %}
+{% block title %}MedApp{% endblock %}
+{% block content %}
+<div class="row">
+	
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/medIimg.jpg') }}" alt="Front Photo of Musical Band" />
+	</div>
+	<div class="col-sm-6">
+		<p class="lead">Book an Appointment</p>
+		<h3>
+			<a href="/appointments"><button class="btn btn-default btn-lg">Find an Appointments</button></a>
+			<a href="/appointments/create"><button class="btn btn-color btn-lg">Add new Appointments</button></a>
+		</h3>
+
+		<p class="lead">List of Doctors, Patients</p>
+		<h3>
+			<a href="/doctors"><button class="btn btn-color btn-lg">Find a doctor</button></a>
+			<a href="/doctors/create"><button class="btn btn-default btn-lg">Add new doctor</button></a>
+		</h3>
+		<h3>
+			<a href="/patients"><button class="btn btn-color btn-lg">Find a patient</button></a>
+			<a href="/patients/create"><button class="btn btn-default btn-lg">Add new patient</button></a>
+		</h3>
+		
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html' %}
+{% block title %}New Doctor{% endblock %}
+{% block content %}
+
+<div>
+  <div class="form-wrapper">
+    <form method="get" class="form" >
+      <h3 class="form-heading">Doctor's List <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+      <div class="form-group">
+        <label>Specialities</label> 
+        <div class="form-group">
+          {{ form.specialities(class_="form-control") }}
+        </div>
+      </div>
+      {{ form.csrf_token() }}
+    </form>
+  </div>      
+</div>
+
+<div>
+  <h2>Doctors List</h2>
+  <ul id="doctors" class="items">
+    {% for doctor in doctors %}
+    <li>
+      <a href="/doctors/{{ doctor.id }}">
+        <i class="fas fa-users"></i>
+        <div class="item">
+          <h5>{{ doctor.name }}</h5>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  </div>
+<!-- add script to send AJAX request to server and display doctors' names -->
+
+
+
+{% endblock %}

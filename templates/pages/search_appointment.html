@@ -1,0 +1,17 @@
+{% extends 'layouts/main.html' %}
+{% block title %}MedAppo | Appointment Search{% endblock %}
+{% block content %}
+<h3>Number of search results for "{{ search_term }}": {{ results.count }}</h3>
+<ul class="items">
+	{% for appointment in results.data %}
+	<li>
+		<a href="/appointments/{{ appointment.id }}">
+			<i class="fas fa-music"></i>
+			<div class="item">
+				<h5>{{ appointment.name }}</h5>
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

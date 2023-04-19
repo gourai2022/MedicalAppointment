@@ -1,0 +1,38 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+<div class="page-header">
+  <h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Create New Appointment</h3>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-wrapper">
+      <form method="post" class="form">
+        <h3 class="form-heading">List a new show</h3>
+        <div class="form-group">
+          <label for="patient_id">Patient ID</label>
+          <small>ID can be found on the Patient's Page</small>
+          {{ form.patient_id(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="doctor_id">Doctor ID</label>
+          <small>ID can be found on the Doctors's Page</small>
+          {{ form.doctor_id(class_ = 'form-control', autofocus = true) }} {{form.hidden_tag()}}
+        </div>
+        <div class="form-group">
+            <label for="appo_day">Appointment Date</label>
+            {{ form.appo_day(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM', autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="appo_time">Appointment Time</label>
+          {{ form.appo_time(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <input type="submit" value="Create Appointment" class="btn btn-color btn-lg btn-block">
+        {{ form.csrf_token() }}  
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/appointment.png') }}" alt="Front Photo" />
+	</div>
+</div>  
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Appointment{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h3><a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-left"></i></a>&nbsp; Appointment Details</h3>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+    <h4><label>Appointment Date</label>{{ appointment.appo_day }} | <label>Appointment Time</label> {{ appointment.appo_time }}</h4>
+    <h5>Doctor Name: <a href="/doctors/{{ appointment.doctor_id }}">{{ doctor }}</a></h5>
+    <h5>Patient Name: <a href="/patients/{{ appointment.patient_id }}">{{ patient }}</a></h5>
+    <p style="padding: 10px;"></p>
+    <a href="/appointments/{{ appointment.id }}/edit"><button class="btn btn-color btn-lg">Edit</button></a>
+    <a href="{{ url_for('delete_appointment', id = appointment.id)}}" class="btn btn-color btn-lg">Delete</a>
+    </div>
+    <div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/appointment.png') }}" alt="Front Photo" />
+	</div>
+</div>
+{% endblock %}

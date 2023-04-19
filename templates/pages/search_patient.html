@@ -1,0 +1,17 @@
+{% extends 'layouts/main.html' %}
+{% block title %}MedAppo | Patients Search{% endblock %}
+{% block content %}
+<h3>Number of search results for "{{ search_term }}": {{ results.count }}</h3>
+<ul class="items">
+	{% for patient in results.data %}
+	<li>
+		<a href="/patients/{{ patient.id }}">
+			<i class="fas fa-users"></i>
+			<div class="item">
+				<h5>{{ patient.name }}</h5>
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
