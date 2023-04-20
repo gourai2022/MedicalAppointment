@@ -11,9 +11,9 @@ from flask_migrate import Migrate
 database_name = "medapp"
 # database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 database_path = "postgres:///{}".format(database_name)
-#database_path = os.environ['DATABASE_URL']
+database_path = os.environ['DATABASE_URL']
 db = SQLAlchemy()
-#app = Flask(__name__)
+app = Flask(__name__)
 #db = SQLAlchemy(app)
 
 def setup_db(app):
