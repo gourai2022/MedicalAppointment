@@ -11,7 +11,7 @@ DEBUG = True
 database_name = "medapp"
 #database_path = 'postgresql://postgres_deployment_medapp_user:EhRLLkptvFgJPnNmW6ezO9CoDGlkQZOw@dpg-cgmqgbrhp8ua8vs49q30-a/postgres_deployment_medapp'
 database_path = "postgresql:///{}".format(database_name)
-#database_path = os.environ['DATABASE_URL']
+database_path = os.environ['DATABASE_URL']
 
 #database_path = os.getenv("DATABASE_URL")
 if database_path.startswith("postgres://"):
