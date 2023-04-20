@@ -45,6 +45,7 @@ class Appointment(db.Model):
     def __repr__(self):
       return f'<appointment {self.id} {self.appo_day} {self.appo_time} {self.appo_available} doctor_appo_id {self.doctor_id}, patient_appo_id {self.patient_id}>'
 
+    '''
     def insert(self):
         db.session.add(self)
         db.session.commit()
@@ -62,7 +63,7 @@ class Appointment(db.Model):
             'appo_day': self.appo_day,
             'appo_time': self.appo_time
         }    
-
+    '''
 
 class Doctor(db.Model):
     __tablename__ = 'doctor'
@@ -85,6 +86,7 @@ class Doctor(db.Model):
     def __repr__(self):
       return f'<doctor {self.id} {self.name} {self.gender} {self.address} {self.city} {self.state} {self.phone} {self.appo_location} {self.facebook_link} {self.twiter_link} {self.linkedin_link} {self.website_link} {self.specialities} {self.upcoming_appo_count} {self.past_appo_count}>'
     
+    '''
     def insert(self):
         db.session.add(self)
         db.session.commit()
@@ -112,7 +114,8 @@ class Doctor(db.Model):
             'website_link': self.website_link,
             'specialities': self.specialities
         }    
-    
+    '''
+        
 class Patient(db.Model):
     __tablename__ = 'patient'
     id = db.Column(db.Integer, primary_key=True)
@@ -134,6 +137,7 @@ class Patient(db.Model):
     def __repr__(self):
       return f'<patient {self.id} {self.name} {self.gender} {self.address} {self.city} {self.state} {self.phone} {self.appo_location} {self.date_of_birth} {self.health_insurance_provider} {self.health_insurance_id} {self.seeking_specialities} {self.upcoming_appo_count} {self.past_appo_count} >'
     
+    '''
     def __repr__(self):
       return f'<doctor {self.id} {self.name} {self.gender} {self.address} {self.city} {self.state} {self.phone} {self.appo_location} {self.facebook_link} {self.twiter_link} {self.linkedin_link} {self.website_link} {self.specialities} {self.upcoming_appo_count} {self.past_appo_count}>'
     
@@ -163,7 +167,8 @@ class Patient(db.Model):
             'health_insurance_id': self.health_insurance_id,
             'seeking_specialities': self.seeking_specialities,
             'concern_description': self.concern_description
-        }    
+        } 
+    '''   
 
 
 """class Doctor_Rating(db.Model):
