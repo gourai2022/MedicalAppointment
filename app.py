@@ -23,7 +23,6 @@ from flask_wtf.csrf import CSRFProtect
 from dateutil import parser
 from models import *
 from forms import *
-from models import setup_db
 from flask_cors import CORS
 
 def create_app(test_config=None):
