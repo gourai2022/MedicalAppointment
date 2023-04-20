@@ -13,12 +13,12 @@ class AppointmentForm(FlaskForm):
     appo_time = SelectField(
         'appo_time', validators=[DataRequired()],
         choices=[
-            ('09:30', '09:30'),
-            ('10:30', '10:30'),
-            ('11:30', '11:30'),
-            ('01:30', '01:30'),
-            ('02:30', '02:30'),
-            ('03:30', '03:30'),
+            ('09:30 AM', '09:30 AM'),
+            ('10:30 AM', '10:30 AM'),
+            ('11:30 AM', '11:30 AM'),
+            ('01:30 PM', '01:30 PM'),
+            ('02:30 PM', '02:30 PM'),
+            ('03:30 PM', '03:30 PM'),
         ]
     )
     doctor_id = StringField(

@@ -1,0 +1,157 @@
+-- PostgreSQL database dump
+
+-- Dumped from database version 11.3
+-- Dumped by pg_dump version 11.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+-- Create database
+-- CREATE DATABASE medapp_test;
+
+-- Connect to database
+\c medapp_test;
+
+-- Create table "doctor"
+CREATE TABLE doctor (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    address VARCHAR(120) NOT NULL,
+    city VARCHAR(120) NOT NULL,
+    state VARCHAR(120) NOT NULL,
+    phone VARCHAR(120) NOT NULL,
+    facebook_link VARCHAR(120),
+    twiter_link VARCHAR(120),
+    linkedin_link VARCHAR(120),
+    website_link VARCHAR(120),
+    specialities VARCHAR(120),
+    upcoming_appo INTEGER DEFAULT 0 NOT NULL,
+    past_appo INTEGER DEFAULT 0 NOT NULL
+);
+
+-- Create table "patient"
+CREATE TABLE patient (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    address VARCHAR(120) NOT NULL,
+    city VARCHAR(120) NOT NULL,
+    state VARCHAR(120) NOT NULL,
+    phone VARCHAR(120) NOT NULL,
+    date_of_birth VARCHAR(120) NOT NULL,
+    health_insurance_provider VARCHAR(120) NOT NULL,
+    health_insurance_id VARCHAR(120) NOT NULL,
+    seeking_specialities VARCHAR(120) NOT NULL,
+    concern_description VARCHAR(500),
+    upcoming_appo INTEGER DEFAULT 0 NOT NULL,
+    past_appo INTEGER DEFAULT 0 NOT NULL
+);
+
+-- Create table "appointment"
+CREATE TABLE appointment (
+    id SERIAL PRIMARY KEY,
+    appo_day VARCHAR(20) NOT NULL,
+    appo_time VARCHAR(20) NOT NULL,
+    appo_available BOOLEAN DEFAULT TRUE NOT NULL
+);
+
+ALTER TABLE appointment ADD COLUMN doctor_id INTEGER NOT NULL;
+
+ALTER TABLE appointment ADD COLUMN patient_id INTEGER NOT NULL;
+
+ALTER TABLE appointment ADD CONSTRAINT appointment_doctor_id_fkey FOREIGN KEY (doctor_id) REFERENCES doctor (id);
+
+ALTER TABLE appointment ADD CONSTRAINT appointment_patient_id_fkey FOREIGN KEY (patient_id) REFERENCES patient (id);
+
+-- Doctor Records --
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. John Smith', 'Male', '123 Main St', 'New York', 'New York', '555-1234', 'https://facebook.com/drjohnsmith', 'https://twitter.com/drjohnsmith', 'https://linkedin.com/in/drjohnsmith', 'https://drjohnsmith.com', 'Cardiology', 0, 100);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. Jane Doe', 'Female', '456 Oak St', 'Los Angeles', 'California', '555-5678', 'https://facebook.com/drjanedoe', 'https://twitter.com/drjanedoe', 'https://linkedin.com/in/drjanedoe', 'https://drjanedoe.com', 'Dermatology', 0, 50);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, facebook_link, twiter_link, linkedin_link, website_link, specialities, upcoming_appo, past_appo)
+VALUES ('Dr. David Lee', 'Male', '789 Maple St', 'Chicago', 'Illinois', '555-9012', 'https://facebook.com/drdavidlee', 'https://twitter.com/drdavidlee', 'https://linkedin.com/in/drdavidlee', 'https://drdavidlee.com', 'Orthopedics', 0, 200);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, facebook_link) VALUES ('Dr. Sarah Lee', 'Female', '111 Cherry St.', 'Anytown', 'CA', '555-3456', 'Oncology', 'facebook.com/dr_sarah_lee');
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, twiter_link) VALUES ('Dr. David Kim', 'Male', '222 Maple St.', 'Anytown', 'CA', '555-7890', 'Neurology', 'twitter.com/dr_david_kim');
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, linkedin_link) VALUES ('Dr. Emily Chen', 'Female', '333 Pine St.', 'Anytown', 'CA', '555-2345', 'Psychiatry', 'linkedin.com/in/dr_emily_chen');
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, website_link) VALUES ('Dr. James Lee', 'Male', '444 Oak St.', 'Anytown', 'CA', '555-6789', 'Orthopedics', 'jamesleemd.com');
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, upcoming_appo) VALUES ('Dr. Lisa Kim', 'Female', '555 Elm St.', 'Anytown', 'CA', '555-0123', 'Gynecology', 3);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, past_appo) VALUES ('Dr. Brian Smith', 'Male', '666 Maple St.', 'Anytown', 'CA', '555-4567', 'Urology', 5);
+
+INSERT INTO doctor (name, gender, address, city, state, phone, specialities, facebook_link, twiter_link, linkedin_link, website_link) VALUES ('Dr. Elizabeth Brown', 'Female', '777 Pine St.', 'Anytown', 'CA', '555-8901', 'Endocrinology', 'facebook.com/dr_elizabeth_brown', 'twitter.com/dr_elizabeth_brown', 'linkedin.com/in/dr_elizabeth_brown', 'elizabethbrownmd.com');
+
+-- Patient Records -- 
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('John Doe', 'Male', '123 Main St', 'New York', 'New York', '555-1234', '1980-01-01', 'BlueCross', '123456', 'Cardiology', 'I have been experiencing chest pain', 0, 5);
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('Jane Smith', 'Female', '456 Oak St', 'Los Angeles', 'California', '555-5678', '1975-05-10', 'Aetna', '789012', 'Dermatology', 'I have a rash on my arms and legs', 0, 3);
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo)
+VALUES ('David Lee', 'Male', '789 Maple St', 'Chicago', 'Illinois', '555-9012', '1990-08-15', 'Cigna', '345678', 'Orthopedics', 'I injured my knee playing soccer', 0, 2);
+
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo, past_appo) VALUES ('Michael Johnson', 'Male', '789 Oak St.', 'Anytown', 'CA', '555-9012', '1980-01-01', 'United Healthcare', '789012', 'Neurology', 'Chronic migraines', 1, 2);
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo) VALUES ('Sarah Lee', 'Female', '111 Cherry St.', 'Anytown', 'CA', '555-3456', '1987-01-01', 'Cigna', '345678', 'Oncology', 'Breast lump', 1);
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, past_appo) VALUES ('David Kim', 'Male', '222 Maple St.', 'Anytown', 'CA', '555-7890', '1980-03-03', 'Humana', '901234', 'Orthopedics', 'Knee pain', 3);
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcoming_appo) VALUES ('Emily Chen', 'Female', '333 Pine St.', 'Anytown', 'CA', '555-2345', '1999-01-01', 'Anthem', '567890', 'Psychiatry', 'Depression', 2);
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, past_appo) VALUES ('James Lee', 'Male', '444 Oak St.', 'Anytown', 'CA', '555-6789', '1970-12-01', 'Kaiser Permanente', '234567', 'Gynecology', 'Irregular periods', 4);
+INSERT INTO patient (name, gender, address, city, state, phone, date_of_birth, health_insurance_provider, health_insurance_id, seeking_specialities, concern_description, upcomi
+
+-- Appointment Records -- 
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-15', '10:30 AM', true, 1, 1);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-25', '11:30 AM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-26', '1:30 PM', true, 2, 1);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-27', '11:30 AM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-25', '01:00 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-27', '1:00 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-24', '2:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-25', '3:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-25', '11:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-25', '10:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-27', '11:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-26', '10:30 PM', true, 1, 2);
+
+INSERT INTO appointment (appo_day, appo_time, appo_available, doctor_id, patient_id)
+VALUES ('2023-04-24', '11:30 PM', true, 1, 2);
